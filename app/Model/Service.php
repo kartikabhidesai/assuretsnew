@@ -200,29 +200,20 @@ class Service extends Model {
         
         $norwayLayer = ImageWorkshop::initFromPath($gifPath);
         $fontsize = 100;
-        if($width >= 0 || $width >= 200 ){
-            $fontsize=10;
+        $fontsize =0;
+        if($width >= 0 && $width <= 400 ){
+            $fontsize=7;
         }
         
-        if($width > 200 || $width >= 400 ){
-            $fontsize=15;
-        }
         
-        if($width > 400 || $width >= 600 ){
-            $fontsize=40;
-        }
+        if($width > 400 && $width <= 600 ){
+            $fontsize=20;
+        } 
         
-        if($width > 600 || $width >= 800 ){
-            $fontsize=50;
+        if($width > 600 ){
+            $fontsize=25;
         }
-        
-        if($width > 800 || $width >= 1000 ){
-            $fontsize=60;
-        }
-        
-        if($width > 1000 ){
-            $fontsize=90;
-        }
+       
         // This is the text layer
         $textLayer = ImageWorkshop::initTextLayer(date('Y-m-d H:i:s'), public_path().'/fonts/American Desktop.ttf', $fontsize, 'ffffff', 0);
 

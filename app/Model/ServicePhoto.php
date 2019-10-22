@@ -61,34 +61,38 @@ class ServicePhoto extends Model {
         $gifPath = $publicPath; // Your animated GIF path
         
         $norwayLayer = ImageWorkshop::initFromPath($gifPath);
-        if($width >= 0 || $width >= 200 ){
-            $fontsize=10;
+        $fontsize =0;
+        if($width >= 0 && $width <= 400 ){
+            $fontsize=7;
         }
         
-        if($width > 200 || $width >= 400 ){
-            $fontsize=15;
-        }
         
-        if($width > 400 || $width >= 600 ){
-            $fontsize=40;
-        }
+        if($width > 400 && $width <= 600 ){
+            $fontsize=20;
+        } 
         
-        if($width > 600 || $width >= 800 ){
-            $fontsize=50;
-        }
         
-        if($width > 800 || $width >= 1000 ){
-            $fontsize=60;
+//        
+//        if($width > 600 || $width >= 800 ){
+//            $fontsize=50;
+//        }
+//        
+//        if($width > 800 || $width >= 1000 ){
+//            $fontsize=60;
+//        }
+//        
+        if($width > 600 ){
+            $fontsize=25;
         }
-        
-        if($width > 1000 ){
-            $fontsize=90;
-        }
+       
         // This is the text layer
         $textLayer = ImageWorkshop::initTextLayer(date('Y-m-d H:i:s'), public_path().'/fonts/American Desktop.ttf', $fontsize, 'ffffff', 0);
 
         // We add the text layer 12px from the Left and 12px from the Bottom ("LB") of the norway layer:
         $norwayLayer->addLayerOnTop($textLayer, 12, 12, "LB");
+        
+        $textLayernew = ImageWorkshop::initTextLayer('www.assurets.com', public_path().'/fonts/American Desktop.ttf', $fontsize, 'ffffff', 0);
+        $norwayLayer->addLayerOnTop($textLayernew, 12, 12, "RB");
 
         $image = $norwayLayer->getResult();
         
