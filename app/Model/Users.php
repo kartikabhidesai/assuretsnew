@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use App\Model\Sendmail;
-
+use Illuminate\Support\Facades\Auth;
 class Users extends Model{
     
     public $timestamps = false;
@@ -165,7 +165,7 @@ class Users extends Model{
                             
         $data = array();
          foreach ($resultArr as $row) {
-            $actionHtml = '<a href="'. route("edituser",["id"=>$row["id"]]).'"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a> <a class="delete" data_value="'.$row["id"].'" ><i class="fa fa-trash-o" aria-hidden="true"></i></a> ';
+            $actionHtml = '<a href="'. route("changeuserpassword",["id"=>$row["id"]]).'"><i class="fa fa-eye-slash" aria-hidden="true" title="Change Password"></i></a> <a href="'. route("edituser",["id"=>$row["id"]]).'"><i class="fa fa-pencil-square-o" title="Edit Details" aria-hidden="true"></i></a><a class="delete" data_value="'.$row["id"].'" ><i class="fa fa-trash-o" aria-hidden="true"></i></a> ';
             if($row['role_type']=='admin'){
                 $roletypeHtml='<span class="label label-success">Admin</span>';
             }
@@ -287,5 +287,16 @@ class Users extends Model{
         }
         
     }
+    
+    public function changepassword($hashnewpassword , $id){
+        $update_res = Users::where('id',$id)
+                ->update([
+                        'password' => $hashnewpassword,
+                    ]);
+         return $update_res;
+        
+    }
+        
+    
 }
 

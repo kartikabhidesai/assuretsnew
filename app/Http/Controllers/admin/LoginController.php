@@ -147,7 +147,7 @@ class LoginController extends Controller {
                         
             ]);
             if ($validator->fails()) {
-                return redirect('edituserform/' . $id)
+                return redirect('edituser/' . $id)
                                 ->withErrors($validator)
                                 ->withInput();
             }
@@ -179,6 +179,43 @@ class LoginController extends Controller {
         $getupdateData = $updateUsers->getupdate($id);
         $data['getupdateData'] = $getupdateData;
         return view('admin.pages.edituser', $data);
+    }
+    
+    public function changepassword(Request $request, $id) {
+        
+        if ($request->isMethod('post')) {
+            
+            $validator = validator::make($request->all(), [
+                'newpassword' => 'required',
+                'confirmpassword' => 'required|same:newpassword',
+            ]);
+            if ($validator->fails()) {
+                return redirect('changeuserpassword/' . $id)
+                                ->withErrors($validator)
+                                ->withInput();
+            }
+            
+            
+            $id = $request['id'];
+            $newpassword = $request['newpassword'];
+            $confirmpassword = $request['confirmpassword'];
+             $hashnewpassword = Hash::make($newpassword);      
+
+            $updateInputs = new Users;
+            $getUpadateData = $updateInputs->changepassword($hashnewpassword, $id);
+            
+            
+            if($getUpadateData){
+                return redirect()->back()->with('message', 'User Name alreay exist');
+            }else{
+                return redirect()->back()->with('message', 'Something Goes to wrong');
+            }
+        }
+        $data['id'] = $id ;
+        $updateUsers = new Users;
+        $getupdateData = $updateUsers->getupdate($id);
+        $data['getupdateData'] = $getupdateData;
+        return view('admin.pages.changeuserpassword', $data);
     }
 
     public function userform(Request $request) {

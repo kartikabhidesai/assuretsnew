@@ -201,7 +201,14 @@ class Service extends Model {
         $norwayLayer = ImageWorkshop::initFromPath($gifPath);
         $fontsize = 100;
         $fontsize =0;
-        if($width >= 0 && $width <= 400 ){
+        if($width >= 0 && $width <= 200 ){
+            $fontsize=4;
+        }
+        
+        if($width >= 200 && $width <= 300 ){
+            $fontsize=5;
+        }
+        if($width >= 300 && $width <= 400 ){
             $fontsize=7;
         }
         

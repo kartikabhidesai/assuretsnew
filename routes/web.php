@@ -22,6 +22,7 @@ Route::match(['get'],'/delete/{id}',(['as'=>'delete','uses'=>'admin\LoginControl
 Route::match(['get','post'],'/userform',(['as'=>'userform','uses'=>'admin\LoginController@userform']));
 
 Route::match(['get','post'],'/edituser/{id}',(['as'=>'edituser','uses'=>'admin\LoginController@edituser']));
+Route::match(['get','post'],'/changeuserpassword/{id}',(['as'=>'changeuserpassword','uses'=>'admin\LoginController@changepassword']));
 
 Route::match(['get','post'],'/viewprofile',(['as'=>'viewprofile','uses'=>'admin\ProfileController@viewprofile']));
 Route::match(['get','post'],'/updateprofile',(['as'=>'updateprofile','uses'=>'admin\ProfileController@updateprofile']));
