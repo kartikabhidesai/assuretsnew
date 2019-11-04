@@ -3,7 +3,11 @@
 @section('title', 'Login')
 @section('content')
             <div>
-               
+                <div class="logo d-none d-lg-block">
+                    <a href="{{ route('login') }}">
+                         <img style="width: 300px;height: 125px;" src="{{ url('public/uploads/AssuretsLogo.jpg')}}" alt="Logo">
+                     </a>
+                </div>
             </div>
             <h3>Login Here</h3>
             @if ($errors->any())

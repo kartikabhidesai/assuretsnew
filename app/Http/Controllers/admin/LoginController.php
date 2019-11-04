@@ -206,7 +206,7 @@ class LoginController extends Controller {
             
             
             if($getUpadateData){
-                return redirect()->back()->with('message', 'User Name alreay exist');
+                return redirect()->back()->with('message', 'User Password succesfully updated.');
             }else{
                 return redirect()->back()->with('message', 'Something Goes to wrong');
             }
