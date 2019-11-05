@@ -105,16 +105,32 @@ class APIController extends Controller {
     public function saveService(Request $request){
        
         if ($request->isMethod('post')) {
+            $validator = validator::make($request->all(), [
+                        'engine_no' => 'required',
+                        'chession_no' => 'required',
+                        'latitude' => 'required',
+                        'longitude' => 'required',
+                        'service_id' => 'required',
+                        'odo_meter' => 'required',
+            ]);
             
-              $serviceObj = new Service;
-              $usersaved = $serviceObj->saveService($request);
-                if($usersaved)
-                {
-                    $return['status'] = 'success';
-                    $return['message'] = 'Service successfully.';
-                    echo json_encode($return);
-                    exit;
-                }
+            if ($validator->fails()) {
+                $result['status'] = 'fail';
+                $result['message'] = 'Provider required all details.';
+                $result['data'] = json_decode("{}");
+                echo json_encode($result);
+                exit;
+            }
+
+            $serviceObj = new Service;
+            $usersaved = $serviceObj->saveService($request);
+            if($usersaved)
+            {
+                $return['status'] = 'success';
+                $return['message'] = 'Service successfully.';
+                echo json_encode($return);
+                exit;
+            }
           }
     }
     

@@ -35,6 +35,7 @@ class Service extends Model {
         ->update([
             'engine_no' => $request['engine_no'],
             'chession_no' => $request['chession_no'],
+            'odo_meter' => $request['odo_meter'],
             'status' => 'inreport',
         ]);
         if($result){

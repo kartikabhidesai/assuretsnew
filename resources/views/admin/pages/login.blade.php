@@ -5,7 +5,7 @@
             <div>
                 <div class="logo d-none d-lg-block">
                     <a href="{{ route('login') }}">
-                         <img style="width: 300px;height: 125px;" src="{{ url('public/uploads/AssuretsLogo.jpg')}}" alt="Logo">
+                         <img style="width: 300px;height: 125px;" src="{{ url('public/uploads/AssuretsLogo.png')}}" alt="Logo">
                      </a>
                 </div>
             </div>
